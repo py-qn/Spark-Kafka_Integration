@@ -50,17 +50,6 @@ if __name__ == '__main__':
     kafka_kv_df = final_df.select(col("payload.contractIdentifier.newValue").alias("key"),
                                   to_json(struct("*")).alias("value"))
 
-    # # final_df.show(20, False)
-    # kafka_kv_df.show(20, False)
-    #
-    # final_df.select('eventHeader').show(20,False)
-    # final_df.select('keys').show(20, False)
-    # final_df.select('payload').show(20, False)
-    #
-    # input("Press Any Key")
-    # kafka_kv_df.write.format("noop").mode("overwrite").save("test_data\noop")
-
-    # Keep it in vault or other secure place, authorize application to extract it from there
     api_key = conf["kafka.api_key"]
     api_secret = conf["kafka.api_secret"]
 
@@ -75,6 +64,3 @@ if __name__ == '__main__':
         .save()
 
     logger.info("Finished sending data to Kafka")
-
-
-
